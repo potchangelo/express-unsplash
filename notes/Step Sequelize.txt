@@ -1,0 +1,17 @@
+--- Phase 1 ---
+
+npm sequelize init
+npx sequelize db:create
+
+npx sequelize model:generate --name User --attributes uid:string
+npx sequelize model:generate --name Photo --attributes uid:string
+npx sequelize model:generate --name PhotoUrl --attributes photoUid:string
+
+npx sequelize seed:generate --name demo-user
+npx sequelize seed:generate --name demo-photo
+npx sequelize seed:generate --name demo-photo-url
+
+npx sequelize db:migrate
+npx sequelize db:seed:all
+
+--- Phase 2 ---
