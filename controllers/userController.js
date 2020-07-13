@@ -1,16 +1,28 @@
 const { Photo, User } = require('../models');
 
-exports.user = async (req, res) => {
-    let userArray = [];
+exports.getUser = async (req, res) => {
+    const { uid } = req.params;
+    const { includedPhotos } = req.query;
+    let user = [], status = 200;
+
+    let query = { where: { uid } };
+    if (includedPhotos === '1') {
+        query.include = [{ 
+            model: Photo, as: 'photos', 
+            separate: true, 
+            order: [ ['createdAt', 'DESC'] ],
+            limit: 2 
+        }];
+    }
+
     try {
-        userArray = await User.findAll({
-            include: [
-                { model: Photo, as: 'photos' }
-            ]
-        });
+        user = await User.findOne(query);
     }
     catch (error) {
         console.error(error);
+        status = 404;
     }
-    res.json(userArray);
+
+    res.status(status);
+    res.json(user);
 };
