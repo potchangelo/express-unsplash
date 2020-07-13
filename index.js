@@ -1,65 +1,28 @@
 const express = require('express');
-const { sequelize, Photo, PhotoUrl, User } = require('./models');
+const { sequelize } = require('./models');
+const { photoController, userController } = require('./controllers');
 
 const app = express();
 
 app.get('/', async (req, res) => {
+  let message = 'Connection OK', status = 200;
   try {
     await sequelize.authenticate();
-    res.send('OK');
   }
   catch (error) {
     console.error(error);
-    res.send('Error');
+    message = 'Connection Error';
+    status = 502;
   }
+  res.status(status);
+  res.send(message);
 });
 
-app.get('/photo', async (req, res) => {
-  let photoArray = [];
-  try {
-    photoArray = await Photo.findAll({
-      include: [
-        { model: User, as: 'user' },
-        { model: PhotoUrl, as: 'photoUrl' }
-      ]
-    });
-  }
-  catch (error) {
-    console.error(error);
-  }
-  res.json(photoArray);
-});
+app.get('/photos', photoController.getPhotos);
+app.get('/photos/:uid', photoController.getPhoto);
 
-app.get('/photo-url', async (req, res) => {
-  let photoUrlArray = [];
-  try {
-    photoUrlArray = await PhotoUrl.findAll({
-      include: [
-        { model: Photo, as: 'photo' }
-      ]
-    });
-  }
-  catch (error) {
-    console.error(error);
-  }
-  res.json(photoUrlArray);
-});
-
-app.get('/user', async (req, res) => {
-  let userArray = []; 
-  try {
-    userArray = await User.findAll({
-      include: [
-        { model: Photo, as: 'photos' }
-      ]
-    });
-  }
-  catch (error) {
-    console.error(error);
-  }
-  res.json(userArray);
-});
+app.get('/user', userController.user);
 
 app.listen(8080, () => {
-  console.log('Example app listening on port 8080!');
+  console.log('Express Unsplash run on port 8080!');
 });
