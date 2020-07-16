@@ -22,6 +22,7 @@ app.get('/photos', photoController.getPhotos);
 app.get('/photos/:uid', photoController.getPhoto);
 
 app.get('/users/:uid', userController.getUser);
+app.get('/users/:uid/photos', userController.getUserPhotos);
 
 app.listen(8080, () => {
   console.log('Express Unsplash run on port 8080!');

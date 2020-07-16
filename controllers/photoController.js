@@ -12,7 +12,7 @@ exports.getPhotos = async (req, res) => {
             { model: PhotoUrl, as: 'photoUrl' }
         ],
         order: [['createdAt', 'DESC']],
-        limit: 2
+        limit: 5
     };
     if (!!beforeId) {
         query.where = { id: { [Op.lt]: beforeId } };
