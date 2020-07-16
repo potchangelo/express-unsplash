@@ -14,4 +14,15 @@ npx sequelize seed:generate --name demo-photo-url
 npx sequelize db:migrate
 npx sequelize db:seed:all
 
+
 --- Phase 2 ---
+
+npx sequelize seed:generate --name demo-photo-2
+npx sequelize seed:generate --name demo-photo-url-2
+npx sequelize seed:generate --name demo-photo-3
+npx sequelize seed:generate --name demo-photo-url-3
+npx sequelize seed:generate --name demo-photo-4
+npx sequelize seed:generate --name demo-photo-url-4
+
+npx sequelize db:seed:undo:all
+npx sequelize db:seed:all

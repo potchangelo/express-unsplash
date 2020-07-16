@@ -1,7 +1,7 @@
 {
-  "name": "express-aosopo",
+  "name": "express-unsplash",
   "version": "1.0.0",
-  "description": "Express Web-API for Aosopo Web-App",
+  "description": "Express Web-API for Unsplash-cloned Web-App",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
