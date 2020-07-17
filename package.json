@@ -1,13 +1,13 @@
 {
   "name": "express-unsplash",
-  "version": "1.0.0",
-  "description": "Express Web-API for Unsplash-cloned Web-App",
+  "version": "0.1.0",
+  "description": "Express Web-API for Unsplash-cloned Web-App (For Educational Purposes Only)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Potchara Puttawanchai",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "sequelize-cli": "^6.2.0"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
