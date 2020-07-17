@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userUid',
         sourceKey: 'uid'
       });
+      User.hasOne(models.UserAvatarUrl, {
+        as: 'avatar',
+        foreignKey: 'userUid',
+        sourceKey: 'uid'
+      });
     }
   };
   User.init({

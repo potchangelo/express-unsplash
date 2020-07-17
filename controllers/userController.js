@@ -1,4 +1,4 @@
-const { Sequelize, Photo, PhotoUrl, User } = require('../models');
+const { Sequelize, Photo, PhotoUrl, User, UserAvatarUrl } = require('../models');
 
 const Op = Sequelize.Op;
 
@@ -7,15 +7,18 @@ exports.getUser = async (req, res) => {
     const { includedPhotos } = req.query;
     let user = [], status = 200;
 
-    let query = { where: { uid } };
+    let query = {
+        where: { uid },
+        include: [{ model: UserAvatarUrl, as: 'avatar' }]
+    };
     if (includedPhotos === '1') {
-        query.include = [{ 
+        query.include.push({ 
             model: Photo, as: 'photos', 
             include: [{ model: PhotoUrl, as: 'photoUrl' }],
             separate: true, 
             order: [ ['createdAt', 'DESC'] ],
             limit: 5
-        }];
+        });
     }
 
     try {
@@ -38,7 +41,10 @@ exports.getUserPhotos = async (req, res) => {
     let query = {
         where: { userUid },
         include: [
-            { model: User, as: 'user' },
+            { 
+                model: User, as: 'user',
+                include: [{ model: UserAvatarUrl, as: 'avatar' }]
+            },
             { model: PhotoUrl, as: 'photoUrl' }
         ],
         order: [ ['createdAt', 'DESC'] ],

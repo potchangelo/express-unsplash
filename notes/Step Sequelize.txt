@@ -26,3 +26,12 @@ npx sequelize seed:generate --name demo-photo-url-4
 
 npx sequelize db:seed:undo:all
 npx sequelize db:seed:all
+
+
+--- Phase 3 ---
+
+npx sequelize model:generate --name UserAvatarUrl --attributes userUid:string
+npx sequelize seed:generate --name demo-user-avatar-url
+
+npx sequelize db:migrate
+npx sequelize db:seed --seed 20200717095844-demo-user-avatar-url
