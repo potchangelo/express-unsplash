@@ -1,13 +1,28 @@
 {
   "name": "express-unsplash",
-  "version": "0.1.0",
-  "description": "Express Web-API for Unsplash-cloned Web-App (For Educational Purposes Only)",
+  "version": "0.2.0",
+  "description": "Express Web-API for Unsplash-Cloned Web-App (For Educational Purposes Only)",
+  "keywords": [
+    "api",
+    "nodejs",
+    "express",
+    "sequelize",
+    "mysql"
+  ],
+  "author": "Potchara Puttawanchai",
+  "homepage": "https://express-usp-api.herokuapp.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/potchangelo/express-unsplash.git"
+  },
+  "bugs": {
+    "url": "https://github.com/potchangelo/express-unsplash.git/issues"
+  },
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Potchara Puttawanchai",
-  "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
