@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userUid',
         sourceKey: 'uid'
       });
+      User.includedAvatar = {
+        model: models.UserAvatarUrl, as: 'avatar',
+        attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'userUid'] }
+      };
     }
   };
   User.init({

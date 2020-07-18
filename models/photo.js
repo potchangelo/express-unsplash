@@ -21,6 +21,18 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'photoUid',
         sourceKey: 'uid',
       });
+      Photo.includedUser = {
+        model: models.User, as: 'user',
+        attributes: { exclude: ['id', 'createdAt', 'updatedAt'] },
+        include: [{
+          model: models.UserAvatarUrl, as: 'avatar',
+          attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'userUid'] }
+        }]
+      };
+      Photo.includedUrl = {
+        model: models.PhotoUrl, as: 'photoUrl',
+        attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'photoUid'] }
+      }
     }
   };
   Photo.init({
@@ -53,5 +65,8 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Photo',
   });
+
+  Photo.excludedAttrs = ['userUid'];
+
   return Photo;
 };

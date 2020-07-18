@@ -4,6 +4,7 @@ const { sequelize } = require('./models');
 const { photoController, userController } = require('./controllers');
 
 const app = express();
+const port = process.env.PORT || 8080;
 
 app.get('/', async (req, res) => {
   let message = 'Connection OK', status = 200;
@@ -16,7 +17,7 @@ app.get('/', async (req, res) => {
     status = 502;
   }
   res.status(status);
-  res.send(message);
+  res.send(`Express Unsplash-cloned API by Zinglecode (for educational purposes only), ${message}.`);
 });
 
 app.get('/photos', photoController.getPhotos);
@@ -25,6 +26,6 @@ app.get('/photos/:uid', photoController.getPhoto);
 app.get('/users/:uid', userController.getUser);
 app.get('/users/:uid/photos', userController.getUserPhotos);
 
-app.listen(process.env.PORT || 8080, () => {
-  console.log('Express Unsplash run on port 8080!');
+app.listen(port, () => {
+  console.log(`Express Unsplash-cloned API run on port ${port}!`);
 });

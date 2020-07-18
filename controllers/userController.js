@@ -1,23 +1,25 @@
-const { Sequelize, Photo, PhotoUrl, User, UserAvatarUrl } = require('../models');
+const { Sequelize, Photo, User } = require('../models');
 
 const Op = Sequelize.Op;
 
 exports.getUser = async (req, res) => {
     const { uid } = req.params;
-    const { includedPhotos } = req.query;
+    const { latestPhotos } = req.query;
     let user = [], status = 200;
 
     let query = {
+        attributes: { exclude: ['id'] },
         where: { uid },
-        include: [{ model: UserAvatarUrl, as: 'avatar' }]
+        include: [User.includedAvatar]
     };
-    if (includedPhotos === '1') {
-        query.include.push({ 
-            model: Photo, as: 'photos', 
-            include: [{ model: PhotoUrl, as: 'photoUrl' }],
-            separate: true, 
-            order: [ ['createdAt', 'DESC'] ],
-            limit: 5
+    if (latestPhotos === '1') {
+        query.include.push({
+            model: Photo, as: 'photos',
+            attributes: { exclude: Photo.excludedAttrs },
+            include: [Photo.includedUrl],
+            separate: true,
+            order: [['createdAt', 'DESC']],
+            limit: 12
         });
     }
 
@@ -39,16 +41,18 @@ exports.getUserPhotos = async (req, res) => {
     let photoArray = [], status = 200;
 
     let query = {
+        attributes: { exclude: Photo.excludedAttrs },
         where: { userUid },
         include: [
-            { 
+            {
                 model: User, as: 'user',
-                include: [{ model: UserAvatarUrl, as: 'avatar' }]
+                attributes: { exclude: ['id', 'createdAt', 'updatedAt'] },
+                include: [User.includedAvatar]
             },
-            { model: PhotoUrl, as: 'photoUrl' }
+            Photo.includedUrl
         ],
-        order: [ ['createdAt', 'DESC'] ],
-        limit: 5
+        order: [['createdAt', 'DESC']],
+        limit: 12
     };
     if (!!beforeId) {
         query.where.id = { [Op.lt]: beforeId };
@@ -61,7 +65,7 @@ exports.getUserPhotos = async (req, res) => {
         console.error(error);
         status = 404;
     }
-    
+
     res.status(status);
     res.json(photoArray);
 };

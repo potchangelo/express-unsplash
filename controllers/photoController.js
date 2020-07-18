@@ -1,4 +1,4 @@
-const { Sequelize, Photo, PhotoUrl, User } = require('../models');
+const { Sequelize, Photo } = require('../models');
 
 const Op = Sequelize.Op;
 
@@ -7,12 +7,10 @@ exports.getPhotos = async (req, res) => {
     let photoArray = [], status = 200;
 
     let query = {
-        include: [
-            { model: User, as: 'user' },
-            { model: PhotoUrl, as: 'photoUrl' }
-        ],
+        attributes: { exclude: Photo.excludedAttrs },
+        include: [Photo.includedUser, Photo.includedUrl],
         order: [['createdAt', 'DESC']],
-        limit: 5
+        limit: 12
     };
     if (!!beforeId) {
         query.where = { id: { [Op.lt]: beforeId } };
@@ -35,18 +33,16 @@ exports.getPhoto = async (req, res) => {
 
     try {
         photo = await Photo.findOne({
+            attributes: { exclude: Photo.excludedAttrs },
             where: { uid: req.params.uid },
-            include: [
-                { model: User, as: 'user' },
-                { model: PhotoUrl, as: 'photoUrl' }
-            ]
+            include: [Photo.includedUser, Photo.includedUrl],
         });
     }
     catch (error) {
         console.error(error);
         status = 404;
     }
-    
+
     res.status(status);
     res.json(photo);
 };
