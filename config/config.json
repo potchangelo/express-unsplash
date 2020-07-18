@@ -6,6 +6,7 @@
         "use_env_variable": "TEST_URL"
     },
     "production": {
-        "use_env_variable": "JAWSDB_URL"
+        "use_env_variable": "JAWSDB_URL",
+        "logging": false
     }
 }
