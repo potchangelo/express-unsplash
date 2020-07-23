@@ -1,10 +1,13 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const { sequelize } = require('./models');
 const { photoController, userController } = require('./controllers');
 
 const app = express();
 const port = process.env.PORT || 8080;
+
+app.use(cors());
 
 app.get('/', async (req, res) => {
   let message = 'Connection OK', status = 200;
