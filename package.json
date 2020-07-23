@@ -1,6 +1,6 @@
 {
   "name": "express-unsplash",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Express Web-API for Unsplash-Cloned Web-App (For Educational Purposes Only)",
   "keywords": [
     "api",
