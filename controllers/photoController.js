@@ -3,6 +3,7 @@ const { Sequelize, Photo } = require('../models');
 const Op = Sequelize.Op;
 
 exports.getPhotos = async (req, res) => {
+    console.log('get photos');
     const { beforeId } = req.query;
     let photoArray = [], status = 200;
 
@@ -24,11 +25,11 @@ exports.getPhotos = async (req, res) => {
         status = 404;
     }
 
-    res.status(status);
-    res.json(photoArray);
+    res.status(status).json(photoArray);
 };
 
 exports.getPhoto = async (req, res) => {
+    console.log('get one photo');
     let photo = null, status = 200;
 
     try {
@@ -43,6 +44,5 @@ exports.getPhoto = async (req, res) => {
         status = 404;
     }
 
-    res.status(status);
-    res.json(photo);
+    res.status(status).json(photo);
 };

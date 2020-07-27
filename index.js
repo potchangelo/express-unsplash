@@ -19,8 +19,9 @@ app.get('/', async (req, res) => {
     message = 'Connection Error';
     status = 502;
   }
-  res.status(status);
-  res.send(`Express Unsplash-cloned API by Zinglecode (for educational purposes only), ${message}.`);
+  res
+  .status(status)
+  .send(`Express Unsplash-cloned API by Zinglecode (for educational purposes only), ${message}.`);
 });
 
 app.get('/photos', photoController.getPhotos);
