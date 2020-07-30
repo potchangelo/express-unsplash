@@ -40,4 +40,7 @@ npx sequelize db:seed --seed 20200717095844-demo-user-avatar-url
 
 npx sequelize migration:generate --name rename-photo-url-columns
 npx sequelize migration:generate --name rename-user-avatar-url-columns
+
 npx sequelize db:migrate
+npx sequelize db:seed:undo:all
+npx sequelize db:seed:all
