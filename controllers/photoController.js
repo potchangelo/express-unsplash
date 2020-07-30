@@ -44,3 +44,21 @@ exports.getPhoto = async (req, res) => {
 
     res.status(status).json(photo);
 };
+
+exports.getRandomPhoto = async (req, res) => {
+    let photo = null, status = 200;
+
+    try {
+        photo = await Photo.findOne({
+            attributes: { exclude: Photo.excludedAttrs },
+            order: Sequelize.literal('rand()'),
+            include: [Photo.includedUser, Photo.includedUrl],
+        });
+    }
+    catch (error) {
+        console.error(error);
+        status = 404;
+    }
+
+    res.status(status).json(photo);
+};

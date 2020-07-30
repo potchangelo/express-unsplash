@@ -25,6 +25,7 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/photos', photoController.getPhotos);
+app.get('/photos/random', photoController.getRandomPhoto);
 app.get('/photos/:uid', photoController.getPhoto);
 
 app.get('/users/:uid', userController.getUser);
