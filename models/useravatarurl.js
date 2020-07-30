@@ -19,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   UserAvatarUrl.init({
-    urlSmall: {
+    small: {
       type: DataTypes.TEXT
     },
-    urlMedium: {
+    medium: {
       type: DataTypes.TEXT
     },
-    urlLarge: {
+    large: {
       type: DataTypes.TEXT
     },
     creditUser: {
