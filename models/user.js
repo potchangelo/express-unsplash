@@ -17,12 +17,12 @@ module.exports = (sequelize, DataTypes) => {
         sourceKey: 'uid'
       });
       User.hasOne(models.UserAvatarUrl, {
-        as: 'avatar',
+        as: 'avatarUrl',
         foreignKey: 'userUid',
         sourceKey: 'uid'
       });
       User.includedAvatar = {
-        model: models.UserAvatarUrl, as: 'avatar',
+        model: models.UserAvatarUrl, as: 'avatarUrl',
         attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'userUid'] }
       };
     }

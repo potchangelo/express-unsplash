@@ -1,6 +1,6 @@
 {
   "name": "express-unsplash",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Express Web-API for Unsplash-Cloned Web-App (For Educational Purposes Only)",
   "keywords": [
     "api",
@@ -24,6 +24,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "babel-register": "^6.26.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

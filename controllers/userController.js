@@ -31,8 +31,7 @@ exports.getUser = async (req, res) => {
         status = 404;
     }
 
-    res.status(status);
-    res.json(user);
+    res.status(status).json(user);
 };
 
 exports.getUserPhotos = async (req, res) => {
@@ -66,6 +65,5 @@ exports.getUserPhotos = async (req, res) => {
         status = 404;
     }
 
-    res.status(status);
-    res.json(photoArray);
+    res.status(status).json(photoArray);
 };

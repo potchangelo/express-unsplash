@@ -19,19 +19,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   PhotoUrl.init({
-    urlThumbnail: {
+    thumbnail: {
       type: DataTypes.TEXT
     },
-    urlSmall: {
+    small: {
       type: DataTypes.TEXT
     },
-    urlMedium: {
+    medium: {
       type: DataTypes.TEXT
     },
-    urlLarge: {
+    large: {
       type: DataTypes.TEXT
     },
-    urlOriginal: {
+    original: {
       type: DataTypes.TEXT
     }
   }, {

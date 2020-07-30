@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'uid'
       });
       Photo.hasOne(models.PhotoUrl, {
-        as: 'photoUrl',
+        as: 'url',
         foreignKey: 'photoUid',
         sourceKey: 'uid',
       });
@@ -25,12 +25,12 @@ module.exports = (sequelize, DataTypes) => {
         model: models.User, as: 'user',
         attributes: { exclude: ['id', 'createdAt', 'updatedAt'] },
         include: [{
-          model: models.UserAvatarUrl, as: 'avatar',
+          model: models.UserAvatarUrl, as: 'avatarUrl',
           attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'userUid'] }
         }]
       };
       Photo.includedUrl = {
-        model: models.PhotoUrl, as: 'photoUrl',
+        model: models.PhotoUrl, as: 'url',
         attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'photoUid'] }
       }
     }
