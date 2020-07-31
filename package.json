@@ -1,7 +1,6 @@
 {
   "name": "express-unsplash",
-  "version": "0.3.0",
-  "description": "Express Web-API for Unsplash-Cloned Web-App (For Educational Purposes Only)",
+  "description": "Express Web-API for Unsplash-Cloned Web-App by Zinglecode (For Educational Purposes Only)",
   "keywords": [
     "api",
     "nodejs",
@@ -9,6 +8,7 @@
     "sequelize",
     "mysql"
   ],
+  "version": "1.0.0",
   "author": "Potchara Puttawanchai",
   "homepage": "https://express-usp-api.herokuapp.com/",
   "repository": {
@@ -21,7 +21,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "dependencies": {
     "babel-register": "^6.26.0",
