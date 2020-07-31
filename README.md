@@ -9,6 +9,8 @@ Responses are sent as JSON.
 
 ## API Documentation
 
+* [Get Photos](#get-photos)
+
 ### Get Photos
 
 Get Photos (Max photo = 12)
@@ -31,7 +33,7 @@ https://express-usp-api.herokuapp.com/photos
 
 #### Example Response
 
-```json
+```javascript
 [
   {
     "id": 28,
@@ -66,6 +68,6 @@ https://express-usp-api.herokuapp.com/photos
       "original": "https://images.unsplash.com/photo-1443890484047-5eaa67d1d630?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80"
     }
   },
-  ... more photos
+  // More photos
 ]
 ```
