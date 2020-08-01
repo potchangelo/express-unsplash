@@ -10,10 +10,10 @@ Responses are sent as JSON.
 ## API Documentation
 
 * [Get photos](#get-photos)
-* [Get a photo](#get-a-photo)
-* [Get a random photo](#get-a-random-photo)
-* [Get a user](#get-a-user)
-* [Get a user's photos](#get-a-users-photos)
+* [Get photo](#get-photo)
+* [Get random photo](#get-random-photo)
+* [Get user](#get-user)
+* [Get user's photos](#get-users-photos)
 * More API coming soon ...
 
 ### Get photos
@@ -77,7 +77,7 @@ https://express-usp-api.herokuapp.com/photos
 ]
 ```
 
-### Get a photo
+### Get photo
 
 Get single photo
 
@@ -135,9 +135,9 @@ https://express-usp-api.herokuapp.com/photos/granwz490n
 }
 ```
 
-### Get a random photo
+### Get random photo
 
-Get random photo
+Get single random photo
 
 ```http
 GET /photos/random
@@ -187,9 +187,9 @@ https://express-usp-api.herokuapp.com/photos/random
 }
 ```
 
-### Get a user
+### Get user
 
-Get user profile
+Get single user profile
 
 ```http
 GET /users/:uid
@@ -234,7 +234,7 @@ https://express-usp-api.herokuapp.com/users/o4weapfvs4
 }
 ```
 
-### Get a user's photos
+### Get user's photos
 
 Get latest user's photos (Max at 12 photos).
 
@@ -300,3 +300,7 @@ https://express-usp-api.herokuapp.com/users/o4weapfvs4/photos
   // More photos
 ]
 ```
+
+## Credit
+
+The project was inspired by https://unsplash.com/, Every photos in API already included with credit for the author on Unsplash.
