@@ -9,29 +9,30 @@ Responses are sent as JSON.
 
 ## API Documentation
 
-* [Get Photos](#get-photos)
+* [Get photos](#get-photos)
+* [Get a photo](#get-a-photo)
 
-### Get Photos
+### Get photos
 
-Get Photos (Max photo = 12)
+Get photos (Max photo = 12)
 
 ```http
-/photos
+GET /photos
 ```
 
-#### Query String Parameters
+#### Query string parameters
 
 Name | Required/Optional | Description
 ---- | ----------------- | -----------
 beforeId | Optional | Get photos which id < beforeId (Use for infinite scroll). If not included, API will return latest 12 photos
 
-#### Example Request
+#### Example request
 
-```http
+```
 https://express-usp-api.herokuapp.com/photos
 ```
 
-#### Example Response
+#### Example response
 
 ```javascript
 [
@@ -70,4 +71,62 @@ https://express-usp-api.herokuapp.com/photos
   },
   // More photos
 ]
+```
+
+### Get a photo
+
+Get a single photo
+
+```http
+GET /photos/:uid
+```
+
+#### Path parameters
+
+Name | Required/Optional | Description
+---- | ----------------- | -----------
+uid | Required | Unique ID of the photo
+
+#### Example request
+
+```
+https://express-usp-api.herokuapp.com/photos/granwz490n
+```
+
+#### Example response
+
+```javascript
+{
+  "id": 26,
+  "uid": "granwz490n",
+  "width": 3054,
+  "height": 4319,
+  "description": "Organic Vodka from Vodka Bornholm, Denmark",
+  "creditUser": "Great Cocktails",
+  "creditUserLink": "https://unsplash.com/@greatcocktails?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText",
+  "creditPhotoLink": "https://unsplash.com/photos/JGpKCpXbIFw",
+  "createdAt": "2020-07-16T12:38:00.000Z",
+  "updatedAt": "2020-07-16T12:38:00.000Z",
+  "user": {
+    "uid": "4qtcj0irg3",
+    "username": "simpleman",
+    "displayName": "Simple Man",
+    "biography": "No man can fly",
+    "avatarUrl": {
+      "small": "https://images.unsplash.com/photo-1503249023995-51b0f3778ccf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=64&h=64&q=80",
+      "medium": "https://images.unsplash.com/photo-1503249023995-51b0f3778ccf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=128&h=128&q=80",
+      "large": "https://images.unsplash.com/photo-1503249023995-51b0f3778ccf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80",
+      "creditUser": "Warren Wong",
+      "creditUserLink": "https://unsplash.com/@wflwong?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText",
+      "creditPhotoLink": "https://unsplash.com/photos/bh4LQHcOcxE"
+    }
+  },
+  "url": {
+    "thumbnail": "https://images.unsplash.com/photo-1594242090827-2132f706cef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=240&q=80",
+    "small": "https://images.unsplash.com/photo-1594242090827-2132f706cef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=640&q=80",
+    "medium": "https://images.unsplash.com/photo-1594242090827-2132f706cef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80",
+    "large": "https://images.unsplash.com/photo-1594242090827-2132f706cef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=80",
+    "original": "https://images.unsplash.com/photo-1594242090827-2132f706cef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80"
+  }
+}
 ```
