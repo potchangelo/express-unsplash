@@ -11,8 +11,10 @@ Responses are sent as JSON.
 
 * [Get photos](#get-photos)
 * [Get a photo](#get-a-photo)
+* [Get a random photo](#get-a-random-photo)
 * [Get a user](#get-a-user)
-* [Get a user's photos](#get-a-user-photos)
+* [Get a user's photos](#get-a-users-photos)
+* More API coming soon ...
 
 ### Get photos
 
@@ -129,6 +131,58 @@ https://express-usp-api.herokuapp.com/photos/granwz490n
     "medium": "https://images.unsplash.com/photo-1594242090827-2132f706cef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80",
     "large": "https://images.unsplash.com/photo-1594242090827-2132f706cef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=80",
     "original": "https://images.unsplash.com/photo-1594242090827-2132f706cef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80"
+  }
+}
+```
+
+### Get a random photo
+
+Get random photo
+
+```http
+GET /photos/random
+```
+
+#### Example request
+
+```
+https://express-usp-api.herokuapp.com/photos/random
+```
+
+#### Example response
+
+```javascript
+{
+  "id": 20,
+  "uid": "nm735i0aew",
+  "width": 3150,
+  "height": 2100,
+  "description": null,
+  "creditUser": "Harley-Davidson",
+  "creditUserLink": "https://unsplash.com/@harleydavidson?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText",
+  "creditPhotoLink": "https://unsplash.com/photos/kSNQz1lTBPQ",
+  "createdAt": "2020-07-12T13:12:00.000Z",
+  "updatedAt": "2020-07-12T13:12:00.000Z",
+  "user": {
+    "uid": "baqh9mr8u0",
+    "username": "classic_harley",
+    "displayName": "Harley",
+    "biography": "Harley only",
+    "avatarUrl": {
+      "small": "https://images.unsplash.com/photo-1519220354349-02724a4d475c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=64&h=64&q=80",
+      "medium": "https://images.unsplash.com/photo-1519220354349-02724a4d475c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=128&h=128&q=80",
+      "large": "https://images.unsplash.com/photo-1519220354349-02724a4d475c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80",
+      "creditUser": "Nathan Dumlao",
+      "creditUserLink": "https://unsplash.com/@nate_dumlao?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText",
+      "creditPhotoLink": "https://unsplash.com/photos/VO3iHIsGjUk"
+    }
+  },
+  "url": {
+    "thumbnail": "https://images.unsplash.com/photo-1558980664-1db506751c6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=240&q=80",
+    "small": "https://images.unsplash.com/photo-1558980664-1db506751c6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=640&q=80",
+    "medium": "https://images.unsplash.com/photo-1558980664-1db506751c6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80",
+    "large": "https://images.unsplash.com/photo-1558980664-1db506751c6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=80",
+    "original": "https://images.unsplash.com/photo-1558980664-1db506751c6c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80"
   }
 }
 ```
