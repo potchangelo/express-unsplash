@@ -11,10 +11,11 @@ Responses are sent as JSON.
 
 * [Get photos](#get-photos)
 * [Get a photo](#get-a-photo)
+* [Get a user](#get-a-user)
 
 ### Get photos
 
-Get photos (Max photo = 12)
+Get latest photos (Max at 12 photos).
 
 ```http
 GET /photos
@@ -24,7 +25,7 @@ GET /photos
 
 Name | Required/Optional | Description
 ---- | ----------------- | -----------
-beforeId | Optional | Get photos which id < beforeId (Use for infinite scroll). If not included, API will return latest 12 photos
+beforeId | Optional | Get latest photos which id < beforeId.
 
 #### Example request
 
@@ -75,7 +76,7 @@ https://express-usp-api.herokuapp.com/photos
 
 ### Get a photo
 
-Get a single photo
+Get single photo
 
 ```http
 GET /photos/:uid
@@ -127,6 +128,53 @@ https://express-usp-api.herokuapp.com/photos/granwz490n
     "medium": "https://images.unsplash.com/photo-1594242090827-2132f706cef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80",
     "large": "https://images.unsplash.com/photo-1594242090827-2132f706cef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=80",
     "original": "https://images.unsplash.com/photo-1594242090827-2132f706cef5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3150&q=80"
+  }
+}
+```
+
+### Get a user
+
+Get user profile
+
+```http
+GET /users/:uid
+```
+
+#### Path parameters
+
+Name | Required/Optional | Description
+---- | ----------------- | -----------
+uid | Required | Unique ID of the user
+
+#### Query string parameters
+
+Name | Required/Optional | Description
+---- | ----------------- | -----------
+latestPhotos | Optional | Set to 1 for included user's latest photos (Max at 12 photos) in the response
+
+#### Example request
+
+```
+https://express-usp-api.herokuapp.com/users/o4weapfvs4
+```
+
+#### Example response
+
+```javascript
+{
+  "uid": "o4weapfvs4",
+  "username": "jason555",
+  "displayName": "Jason",
+  "biography": "Normal is not an option",
+  "createdAt": "2020-06-26T15:53:00.000Z",
+  "updatedAt": "2020-06-26T15:53:00.000Z",
+  "avatarUrl": {
+    "small": "https://images.unsplash.com/photo-1522346513757-54c552451fdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=64&h=64&q=80",
+    "medium": "https://images.unsplash.com/photo-1522346513757-54c552451fdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=128&h=128&q=80",
+    "large": "https://images.unsplash.com/photo-1522346513757-54c552451fdc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=256&h=256&q=80",
+    "creditUser": "Hello I'm Nik ?",
+    "creditUserLink": "https://unsplash.com/@helloimnik?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText",
+    "creditPhotoLink": "https://unsplash.com/photos/6HzhFuiVO60"
   }
 }
 ```
