@@ -12,19 +12,56 @@ Express Web-API for Unsplash-Cloned Web-App (For Educational Purposes Only)
 
 0. Before running project, make sure that **Nodejs** + **MySQL** are installed and already setup on your machine.
 
-1. Download this project, open project folder in code editor (VSCode or Anything).
+1. Download this project, then open project folder in code editor (VSCode or Anything).
 
-2. Create .env file in project folder, then type database URL string like this
+2. Create .env file in project folder, then type database URL string like this (For connecting Nodejs with MySQL).
 
---- template
+Template
+```
+LOCALHOST_URL=mysql://{username}:{password}@{host}:{port}/{database}
+```
 
---- sample
+Example
+```
+LOCALHOST_URL=mysql://root:pass1234@127.0.0.1:3306/nodejs_express_unsplash
+```
 
-3. Install NPM packages
+3. Open Terminal or Command Prompt, then install NPM packages.
 
---- npm install
+```
+npm install
+```
 
-4. ***
+4. Type Sequelize CLI command to create new database.
+
+```
+npx sequelize db:create
+```
+
+4. Type Sequelize CLI command to create tables from migration files.
+
+```
+npx sequelize db:migrate
+```
+
+5. Type Sequelize CLI command to insert sample data to tables.
+
+```
+npx sequelize db:seed:all
+```
+
+6. Start running Nodejs Express web-app.
+
+```
+npm run start
+```
+
+7. Check if web-app. is working properly by open these URLs in browser.
+
+```
+http://localhost:8080/
+http://localhost:8080/photos
+```
 
 ## Base URL Online
 
