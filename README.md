@@ -1,20 +1,21 @@
 # Express Unsplash by Zinglecode
 
-Express Web-API for Unsplash-Cloned Web-App (For Educational Purposes Only)
+Express Web-API for Unsplash-Cloned web-app (for educational purposes only)
 
 ## Table of Contents
 
 * [How to Install and Run Offline](#how-to-install-and-run-offline)
 * [Base URL Online](#base-url-online)
 * [API Documentation](#api-documentation)
+* [Credit](#credit)
 
 ## How to Install and Run Offline
 
-0. Before running project, make sure that **Nodejs** + **MySQL** are installed and already setup on your machine.
+0. Before running project, make sure that **Node.js** + **MySQL** are installed and already setup on your machine.
 
 1. Download this project, then open project folder in code editor (VSCode or Anything).
 
-2. Create .env file in project folder, then type database URL string like this (For connecting Nodejs with MySQL).
+2. Create .env file in project folder, then type database URL string like this (For connecting Node.js with MySQL).
 
 Template
 ```
@@ -26,7 +27,7 @@ Example
 LOCALHOST_URL=mysql://root:pass1234@127.0.0.1:3306/nodejs_express_unsplash
 ```
 
-3. Open Terminal or Command Prompt, then install NPM packages.
+3. Open Terminal or Command Prompt, then install packages.
 
 ```
 npm install
@@ -50,7 +51,7 @@ npx sequelize db:migrate
 npx sequelize db:seed:all
 ```
 
-6. Start running Nodejs Express web-app.
+6. Start running Node.js Express web-app.
 
 ```
 npm run start
@@ -365,3 +366,9 @@ https://express-usp-api.herokuapp.com/users/o4weapfvs4/photos
 ## Credit
 
 The project was inspired by https://unsplash.com/, Every photos in API already included with credit for the author on Unsplash.
+
+### Stack used in the project
+- Node.js
+- Express
+- Sequelize
+- MySQL
