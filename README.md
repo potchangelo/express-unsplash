@@ -2,7 +2,31 @@
 
 Express Web-API for Unsplash-Cloned Web-App (For Educational Purposes Only)
 
-## Base URL
+## Table of Contents
+
+* [How to Install and Run Offline](#how-to-install-and-run-offline)
+* [Base URL Online](#base-url-online)
+* [API Documentation](#api-documentation)
+
+## How to Install and Run Offline
+
+0. Before running project, make sure that **Nodejs** + **MySQL** are installed and already setup on your machine.
+
+1. Download this project, open project folder in code editor (VSCode or Anything).
+
+2. Create .env file in project folder, then type database URL string like this
+
+--- template
+
+--- sample
+
+3. Install NPM packages
+
+--- npm install
+
+4. ***
+
+## Base URL Online
 
 Every API is started at https://express-usp-api.herokuapp.com 
 Responses are sent as JSON.
