@@ -2,12 +2,14 @@
 
 Express Web-API for Unsplash-Cloned web-app (for educational purposes only)
 
+*Front-end web-app is coming soon ...*
+
 ## Table of Contents
 
 * [How to Install and Run Offline](#how-to-install-and-run-offline)
 * [Base URL Online](#base-url-online)
 * [API Documentation](#api-documentation)
-* [Credit](#credit)
+* [Credits](#credits)
 
 ## How to Install and Run Offline
 
@@ -66,8 +68,7 @@ http://localhost:8080/photos
 
 ## Base URL Online
 
-Every API is started at https://express-usp-api.herokuapp.com 
-Responses are sent as JSON.
+Every API is started at https://express-usp-api.herokuapp.com. Responses are sent as JSON.
 
 ## API Documentation
 
@@ -363,9 +364,9 @@ https://express-usp-api.herokuapp.com/users/o4weapfvs4/photos
 ]
 ```
 
-## Credit
+## Credits
 
-The project was inspired by https://unsplash.com/, Every photos in API already included with credit for the author on Unsplash.
+The project was inspired by https://unsplash.com/. Every photos in API already included with credit for the author on Unsplash.
 
 ### Stack used in the project
 - Node.js
