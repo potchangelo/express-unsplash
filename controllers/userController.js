@@ -67,3 +67,22 @@ exports.getUserPhotos = async (req, res) => {
 
     res.status(status).json(photoArray);
 };
+
+exports.getRandomUsers = async (req, res) => {
+    let userArray = [], status = 200;
+
+    try {
+        userArray = await User.findAll({
+            attributes: { exclude: ['id'] },
+            include: [User.includedAvatar],
+            order: Sequelize.literal('rand()'),
+            limit: 12
+        });
+    }
+    catch (error) {
+        console.error(error);
+        status = 404;
+    }
+
+    res.status(status).json(userArray);
+};

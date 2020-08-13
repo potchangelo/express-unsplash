@@ -28,6 +28,7 @@ app.get('/photos', photoController.getPhotos);
 app.get('/photos/random', photoController.getRandomPhoto);
 app.get('/photos/:uid', photoController.getPhoto);
 
+app.get('/users', userController.getRandomUsers);
 app.get('/users/:uid', userController.getUser);
 app.get('/users/:uid/photos', userController.getUserPhotos);
 
