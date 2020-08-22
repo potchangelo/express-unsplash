@@ -3,13 +3,13 @@ const { Sequelize, Photo, User } = require('../models');
 const Op = Sequelize.Op;
 
 exports.getUser = async (req, res) => {
-    const { uid } = req.params;
+    const { username } = req.params;
     const { latestPhotos } = req.query;
     let user = [], status = 200;
 
     let query = {
         attributes: { exclude: ['id'] },
-        where: { uid },
+        where: { username },
         include: [User.includedAvatar]
     };
     if (latestPhotos === '1') {
@@ -35,13 +35,13 @@ exports.getUser = async (req, res) => {
 };
 
 exports.getUserPhotos = async (req, res) => {
-    const { uid: userUid } = req.params;
+    const { username } = req.params;
     const { beforeId } = req.query;
     let photoArray = [], status = 200;
 
     let query = {
         attributes: { exclude: Photo.excludedAttrs },
-        where: { userUid },
+        where: {},
         include: [
             {
                 model: User, as: 'user',
@@ -58,7 +58,11 @@ exports.getUserPhotos = async (req, res) => {
     }
 
     try {
-        photoArray = await Photo.findAll(query);
+        const user = await User.findOne({ where: { username } });
+        if (!!user) {
+            query.where.userUid = user.uid;
+            photoArray = await Photo.findAll(query);
+        }
     }
     catch (error) {
         console.error(error);

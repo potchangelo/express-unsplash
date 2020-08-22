@@ -29,8 +29,8 @@ app.get('/photos/random', photoController.getRandomPhoto);
 app.get('/photos/:uid', photoController.getPhoto);
 
 app.get('/users', userController.getRandomUsers);
-app.get('/users/:uid', userController.getUser);
-app.get('/users/:uid/photos', userController.getUserPhotos);
+app.get('/users/:username', userController.getUser);
+app.get('/users/:username/photos', userController.getUserPhotos);
 
 app.listen(port, () => {
   console.log(`Express Unsplash-cloned API run on port ${port}!`);
