@@ -255,14 +255,14 @@ https://express-usp-api.herokuapp.com/photos/random
 Get single user profile
 
 ```http
-GET /users/:uid
+GET /users/:username
 ```
 
 #### Path parameters
 
 Name | Required/Optional | Description
 ---- | ----------------- | -----------
-uid | Required | Unique ID of the user
+username | Required | Username of the user
 
 #### Query string parameters
 
@@ -273,7 +273,7 @@ latestPhotos | Optional | Set to 1 for included user's latest photos (Max at 12 
 #### Example request
 
 ```
-https://express-usp-api.herokuapp.com/users/o4weapfvs4
+https://express-usp-api.herokuapp.com/users/jason555
 ```
 
 #### Example response
@@ -302,14 +302,14 @@ https://express-usp-api.herokuapp.com/users/o4weapfvs4
 Get latest user's photos (Max at 12 photos).
 
 ```http
-GET /users/:uid/photos
+GET /users/:username/photos
 ```
 
 #### Path parameters
 
 Name | Required/Optional | Description
 ---- | ----------------- | -----------
-uid | Required | Unique ID of the user
+username | Required | Username of the user
 
 #### Query string parameters
 
@@ -320,7 +320,7 @@ beforeId | Optional | Get latest user's photos which id < beforeId.
 #### Example request
 
 ```
-https://express-usp-api.herokuapp.com/users/o4weapfvs4/photos
+https://express-usp-api.herokuapp.com/users/jason555/photos
 ```
 
 #### Example response
