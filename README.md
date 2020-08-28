@@ -2,7 +2,7 @@
 
 Express Web-API for Unsplash-Cloned web-app (for educational purposes only)
 
-*Front-end web-app is coming soon ...*
+[Front-end web-app](https://github.com/potchangelo/next-unsplash)
 
 ## Table of Contents
 
@@ -29,7 +29,7 @@ Example
 LOCALHOST_URL=mysql://root:pass1234@127.0.0.1:3306/nodejs_express_unsplash
 ```
 
-3. Open Terminal or Command Prompt, then install packages.
+3. Open Terminal or Command Prompt at project folder, then install packages.
 
 ```
 npm install
@@ -369,6 +369,7 @@ https://express-usp-api.herokuapp.com/users/jason555/photos
 The project was inspired by https://unsplash.com/. Every photos in API already included with credit for the author on Unsplash.
 
 ### Stack used in the project
+
 - Node.js
 - Express
 - Sequelize
