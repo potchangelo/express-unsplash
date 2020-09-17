@@ -3,7 +3,7 @@ require('newrelic');
 const express = require('express');
 const cors = require('cors');
 const { sequelize } = require('./models');
-const { photoController, userController } = require('./controllers');
+const { photoController, userController, topicController } = require('./controllers');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -32,6 +32,8 @@ app.get('/photos/:uid', photoController.getPhoto);
 app.get('/users', userController.getRandomUsers);
 app.get('/users/:username', userController.getUser);
 app.get('/users/:username/photos', userController.getUserPhotos);
+
+app.get('/topics', topicController.getTopics);
 
 app.listen(port, () => {
   console.log(`Express Unsplash-cloned API run on port ${port}!`);

@@ -37,5 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Topic',
   });
 
+  Topic.excludedAttrs = ['id'];
+
   return Topic;
 };
