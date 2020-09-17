@@ -34,7 +34,8 @@ npx sequelize model:generate --name UserAvatarUrl --attributes userUid:string
 npx sequelize seed:generate --name demo-user-avatar-url
 
 npx sequelize db:migrate
-npx sequelize db:seed --seed 20200717095844-demo-user-avatar-url
+npx sequelize db:seed --seed 20200717095844-demo-user-avatar-url.js
+
 
 --- Phase 4 ---
 

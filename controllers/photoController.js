@@ -8,7 +8,7 @@ exports.getPhotos = async (req, res) => {
 
     let query = {
         attributes: { exclude: Photo.excludedAttrs },
-        include: [Photo.includedUser, Photo.includedUrl],
+        include: [Photo.includedUser, Photo.includedUrl, Photo.includedTopics],
         order: [['createdAt', 'DESC']],
         limit: 12
     };

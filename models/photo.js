@@ -4,13 +4,7 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Photo extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
       Photo.belongsTo(models.User, {
         as: 'user',
         foreignKey: 'userUid',
@@ -20,6 +14,14 @@ module.exports = (sequelize, DataTypes) => {
         as: 'url',
         foreignKey: 'photoUid',
         sourceKey: 'uid',
+      });
+      Photo.belongsToMany(models.Topic, {
+        as: 'topics',
+        through: models.PhotoTopic,
+        sourceKey: 'uid',
+        foreignKey: 'photoUid',
+        otherKey: 'topicUid',
+        targetKey: 'uid'
       });
       Photo.includedUser = {
         model: models.User, as: 'user',
@@ -32,9 +34,15 @@ module.exports = (sequelize, DataTypes) => {
       Photo.includedUrl = {
         model: models.PhotoUrl, as: 'url',
         attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'photoUid'] }
+      },
+      Photo.includedTopics = {
+        model: models.Topic, as: 'topics',
+        attributes: { exclude: ['id', 'createdAt', 'updatedAt'] },
+        through: { attributes: [] }
       }
     }
   };
+  
   Photo.init({
     uid: {
       allowNull: false,

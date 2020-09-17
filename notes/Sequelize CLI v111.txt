@@ -1,0 +1,16 @@
+--- Phase 1 ---
+
+npx sequelize model:generate --name Topic --attributes uid:string
+npx sequelize seed:generate --name demo-topic
+
+npx sequelize db:migrate
+npx sequelize db:seed --seed 20200916082703-demo-topic.js
+
+
+--- Phase 2 ---
+
+npx sequelize model:generate --name PhotoTopic --attributes photoUid:string
+npx sequelize seed:generate --name demo-photo-topic-1
+
+npx sequelize db:migrate
+npx sequelize db:seed --seed 20200916092027-demo-photo-topic-1.js
