@@ -13,6 +13,31 @@ module.exports = (sequelize, DataTypes) => {
         otherKey: 'photoUid',
         targetKey: 'uid'
       });
+
+      Topic.lazyIncludedPhotos = {
+        include: [
+          {
+            model: models.PhotoUrl, as: 'url',
+            attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'photoUid'] }
+          },
+          {
+            model: models.User, as: 'user',
+            attributes: { exclude: ['id', 'createdAt', 'updatedAt'] },
+            include: [{
+              model: models.UserAvatarUrl, as: 'avatarUrl',
+              attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'userUid'] }
+            }]
+          },
+          {
+            model: models.Topic, as: 'topics',
+            attributes: { exclude: ['id', 'createdAt', 'updatedAt'] },
+            through: { attributes: [] }
+          }
+        ],
+        joinTableAttributes: [],
+        order: [['createdAt', 'DESC']],
+        limit: 12
+      };
     }
   };
 
