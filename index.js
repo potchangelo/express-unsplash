@@ -34,6 +34,7 @@ app.get('/users/:username', userController.getUser);
 app.get('/users/:username/photos', userController.getUserPhotos);
 
 app.get('/topics', topicController.getTopics);
+app.get('/topics/:uid', topicController.getTopic);
 
 app.listen(port, () => {
   console.log(`Express Unsplash-cloned API run on port ${port}!`);
