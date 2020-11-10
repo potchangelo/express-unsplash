@@ -5,15 +5,15 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Photo extends Model {
     static associate(models) {
-      Photo.belongsTo(models.User, {
-        as: 'user',
-        foreignKey: 'userUid',
-        targetKey: 'uid'
-      });
       Photo.hasOne(models.PhotoUrl, {
         as: 'url',
         foreignKey: 'photoUid',
         sourceKey: 'uid',
+      });
+      Photo.belongsTo(models.User, {
+        as: 'user',
+        foreignKey: 'userUid',
+        targetKey: 'uid'
       });
       Photo.belongsToMany(models.Topic, {
         as: 'topics',
@@ -23,6 +23,11 @@ module.exports = (sequelize, DataTypes) => {
         otherKey: 'topicUid',
         targetKey: 'uid'
       });
+
+      Photo.includedUrl = {
+        model: models.PhotoUrl, as: 'url',
+        attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'photoUid'] }
+      };
       Photo.includedUser = {
         model: models.User, as: 'user',
         attributes: { exclude: ['id', 'createdAt', 'updatedAt'] },
@@ -31,15 +36,16 @@ module.exports = (sequelize, DataTypes) => {
           attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'userUid'] }
         }]
       };
-      Photo.includedUrl = {
-        model: models.PhotoUrl, as: 'url',
-        attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'photoUid'] }
-      },
       Photo.includedTopics = {
         model: models.Topic, as: 'topics',
         attributes: { exclude: ['id', 'createdAt', 'updatedAt'] },
         through: { attributes: [] }
-      }
+      };
+
+      Photo.addScope('includedAll', {
+        attributes: { exclude: ['userUid'] },
+        include: [Photo.includedUser, Photo.includedUrl, Photo.includedTopics]
+      });
     }
   };
   
@@ -72,9 +78,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Photo',
+    defaultScope: {
+      attributes: { exclude: ['userUid'] },
+    }
   });
-
-  Photo.excludedAttrs = ['userUid'];
 
   return Photo;
 };
