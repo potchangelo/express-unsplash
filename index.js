@@ -31,7 +31,6 @@ app.get('/photos/:uid', photoController.getPhoto);
 
 app.get('/users', userController.getRandomUsers);
 app.get('/users/:username', userController.getUser);
-app.get('/users/:username/photos', userController.getUserPhotos);
 
 app.get('/topics', topicController.getTopics);
 app.get('/topics/:uid', topicController.getTopic);

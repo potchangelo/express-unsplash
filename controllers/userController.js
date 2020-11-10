@@ -7,15 +7,15 @@ const ERROR_GENERAL = 50000;
 exports.getUser = async (req, res) => {
     // - Data
     const { username } = req.params;
-    const { latestPhotos, beforeId } = req.query;
+    const { includedPhotos, photosBeforeId } = req.query;
 
     // - Query
     const query = { where: { username } };
     let photoQuery = null;
-    if (latestPhotos === '1') {
+    if (includedPhotos === '1') {
         photoQuery = { ...User.lazyIncludedPhotos };
-        if (!!beforeId) {
-            photoQuery.where = { id: { [Op.lt]: beforeId } };
+        if (!!photosBeforeId) {
+            photoQuery.where = { id: { [Op.lt]: photosBeforeId } };
         }
     }
 
@@ -23,7 +23,7 @@ exports.getUser = async (req, res) => {
     let userModel = null, photoModelArray = null;
     try {
         userModel = await User.scope('includedAvatar').findOne(query);
-        if (latestPhotos === '1') {
+        if (includedPhotos === '1') {
             photoModelArray = await userModel.getPhotos(photoQuery);
         }
     }
@@ -39,44 +39,6 @@ exports.getUser = async (req, res) => {
     const user = userModel.toJSON();
     if (!!photoModelArray) user.photos = photoModelArray;
     res.status(200).json({ user });
-};
-
-exports.getUserPhotos = async (req, res) => {
-    const { username } = req.params;
-    const { beforeId } = req.query;
-    let photoArray = [], status = 200;
-
-    let query = {
-        attributes: { exclude: Photo.excludedAttrs },
-        where: {},
-        include: [
-            {
-                model: User, as: 'user',
-                attributes: { exclude: ['id', 'createdAt', 'updatedAt'] },
-                include: [User.includedAvatar]
-            },
-            Photo.includedUrl
-        ],
-        order: [['createdAt', 'DESC']],
-        limit: 12
-    };
-    if (!!beforeId) {
-        query.where.id = { [Op.lt]: beforeId };
-    }
-
-    try {
-        const user = await User.findOne({ where: { username } });
-        if (!!user) {
-            query.where.userUid = user.uid;
-            photoArray = await Photo.findAll(query);
-        }
-    }
-    catch (error) {
-        console.error(error);
-        status = 404;
-    }
-
-    res.status(status).json(photoArray);
 };
 
 exports.getRandomUsers = async (req, res) => {

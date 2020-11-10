@@ -9,7 +9,7 @@ exports.getPhotos = async (req, res) => {
     const { beforeId } = req.query;
     
     // - Query
-    let query = {
+    const query = {
         order: [['createdAt', 'DESC']],
         limit: 12
     };
@@ -31,7 +31,7 @@ exports.getPhotos = async (req, res) => {
     }
 
     // - Result
-    res.status(200).json({ photoArray });
+    res.status(200).json({ photos: photoArray });
 };
 
 exports.getPhoto = async (req, res) => {
