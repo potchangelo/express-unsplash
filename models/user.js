@@ -4,13 +4,7 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
       User.hasMany(models.Photo, {
         as: 'photos',
         foreignKey: 'userUid',
@@ -21,12 +15,34 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userUid',
         sourceKey: 'uid'
       });
+
       User.includedAvatar = {
         model: models.UserAvatarUrl, as: 'avatarUrl',
         attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'userUid'] }
       };
+      User.lazyIncludedPhotos = {
+        include: [
+          {
+            model: models.PhotoUrl, as: 'url',
+            attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'photoUid'] }
+          },
+          {
+            model: models.Topic, as: 'topics',
+            attributes: { exclude: ['id', 'createdAt', 'updatedAt'] },
+            through: { attributes: [] }
+          }
+        ],
+        order: [['createdAt', 'DESC']],
+        limit: 12
+      };
+
+      User.addScope('includedAvatar', {
+        attributes: { exclude: ['id'] },
+        include: [User.includedAvatar]
+      });
     }
   };
+
   User.init({
     uid: {
       allowNull: false,
@@ -48,6 +64,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    defaultScope: {
+      attributes: { exclude: ['id'] },
+    }
   });
+
   return User;
 };

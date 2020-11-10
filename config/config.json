@@ -1,7 +1,6 @@
 {
     "development": {
-        "use_env_variable": "LOCALHOST_URL",
-        "logging": false
+        "use_env_variable": "LOCALHOST_URL"
     },
     "test": {
         "use_env_variable": "TEST_URL"

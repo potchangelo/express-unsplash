@@ -2,36 +2,43 @@ const { Sequelize, Photo, User } = require('../models');
 
 const Op = Sequelize.Op;
 
-exports.getUser = async (req, res) => {
-    const { username } = req.params;
-    const { latestPhotos } = req.query;
-    let user = [], status = 200;
+const ERROR_GENERAL = 50000;
 
-    let query = {
-        attributes: { exclude: ['id'] },
-        where: { username },
-        include: [User.includedAvatar]
-    };
+exports.getUser = async (req, res) => {
+    // - Data
+    const { username } = req.params;
+    const { latestPhotos, beforeId } = req.query;
+
+    // - Query
+    const query = { where: { username } };
+    let photoQuery = null;
     if (latestPhotos === '1') {
-        query.include.push({
-            model: Photo, as: 'photos',
-            attributes: { exclude: Photo.excludedAttrs },
-            include: [Photo.includedUrl],
-            separate: true,
-            order: [['createdAt', 'DESC']],
-            limit: 12
-        });
+        photoQuery = { ...User.lazyIncludedPhotos };
+        if (!!beforeId) {
+            photoQuery.where = { id: { [Op.lt]: beforeId } };
+        }
     }
 
+    // - Get
+    let userModel = null, photoModelArray = null;
     try {
-        user = await User.findOne(query);
+        userModel = await User.scope('includedAvatar').findOne(query);
+        if (latestPhotos === '1') {
+            photoModelArray = await userModel.getPhotos(photoQuery);
+        }
     }
     catch (error) {
         console.error(error);
-        status = 404;
+        return res.status(500).json({
+            errorCode: ERROR_GENERAL,
+            errorMessage: 'Error on get user'
+        });
     }
 
-    res.status(status).json(user);
+    // - Result
+    const user = userModel.toJSON();
+    if (!!photoModelArray) user.photos = photoModelArray;
+    res.status(200).json({ user });
 };
 
 exports.getUserPhotos = async (req, res) => {
@@ -73,20 +80,25 @@ exports.getUserPhotos = async (req, res) => {
 };
 
 exports.getRandomUsers = async (req, res) => {
-    let userArray = [], status = 200;
+    // - Query
+    const query = {
+        order: Sequelize.literal('rand()'),
+        limit: 12
+    };
 
+    // - Get
+    let userArray = [];
     try {
-        userArray = await User.findAll({
-            attributes: { exclude: ['id'] },
-            include: [User.includedAvatar],
-            order: Sequelize.literal('rand()'),
-            limit: 12
-        });
+        userArray = await User.scope('includedAvatar').findAll(query);
     }
     catch (error) {
         console.error(error);
-        status = 404;
+        return res.status(500).json({
+            errorCode: ERROR_GENERAL,
+            errorMessage: 'Error on get random users'
+        });
     }
 
-    res.status(status).json(userArray);
+    // - Result
+    res.status(200).json({ users: userArray });
 };
