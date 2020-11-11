@@ -11,6 +11,12 @@ npx sequelize db:seed --seed 20200916082703-demo-topic.js
 
 npx sequelize model:generate --name PhotoTopic --attributes photoUid:string
 npx sequelize seed:generate --name demo-photo-topic-1
+npx sequelize seed:generate --name demo-photo-topic-2
+npx sequelize seed:generate --name demo-photo-topic-3
+npx sequelize seed:generate --name demo-photo-topic-4
 
 npx sequelize db:migrate
 npx sequelize db:seed --seed 20200916092027-demo-photo-topic-1.js
+npx sequelize db:seed --seed 20201111050900-demo-photo-topic-2.js
+npx sequelize db:seed --seed 20201111053044-demo-photo-topic-3.js
+npx sequelize db:seed --seed 20201111054052-demo-photo-topic-4.js
