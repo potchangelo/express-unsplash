@@ -39,4 +39,5 @@ module.exports = {
 };
 
 // Relation
-// - Many to many photos via TopicPhoto table
+// √ 1-to-1       : Topic cover url
+// √ many-to-many : Photos - via PhotoTopics table

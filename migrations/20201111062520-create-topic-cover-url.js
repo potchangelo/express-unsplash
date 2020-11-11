@@ -1,27 +1,31 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Photos', {
+    await queryInterface.createTable('TopicCoverUrls', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      uid: {
+      topicUid: {
         allowNull: false,
         type: Sequelize.STRING,
-        unique: true
+        unique: true,
+        references: {
+          model: 'Topics',
+          key: 'uid'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
-      width: {
-        allowNull: false,
-        type: Sequelize.INTEGER
+      urlSmall: {
+        type: Sequelize.TEXT
       },
-      height: {
-        allowNull: false,
-        type: Sequelize.INTEGER
+      urlMedium: {
+        type: Sequelize.TEXT
       },
-      description: {
+      urlLarge: {
         type: Sequelize.TEXT
       },
       creditUser: {
@@ -40,25 +44,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      userUid: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        references: {
-          model: 'Users',
-          key: 'uid'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
       }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Photos');
+    await queryInterface.dropTable('TopicCoverUrls');
   }
 };
-
-// Relation
-// √ 1-to-1       : Photo url - original, large, medium, small, thumbnail
-// √ many-to-1    : User
-// √ many-to-many : Topics - via PhotoTopics table

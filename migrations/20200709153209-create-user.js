@@ -41,5 +41,5 @@ module.exports = {
 };
 
 // Relation
+// √ 1-to-1    : Avatar url - small, medium, large
 // √ 1-to-many : Photos
-// 1-to-1    : Avatar links - small, medium, large
