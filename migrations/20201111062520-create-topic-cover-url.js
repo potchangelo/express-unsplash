@@ -19,13 +19,13 @@ module.exports = {
         onUpdate: 'cascade',
         onDelete: 'cascade'
       },
-      urlSmall: {
+      small: {
         type: Sequelize.TEXT
       },
-      urlMedium: {
+      medium: {
         type: Sequelize.TEXT
       },
-      urlLarge: {
+      large: {
         type: Sequelize.TEXT
       },
       creditUser: {
