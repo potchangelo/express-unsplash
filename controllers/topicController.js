@@ -15,7 +15,7 @@ exports.getTopics = async (req, res) => {
     // - Get
     let topicArray = [];
     try {
-        topicArray = await Topic.findAll(query);
+        topicArray = await Topic.scope('includedCover').findAll(query);
     }
     catch (error) {
         console.error(error);
@@ -47,7 +47,7 @@ exports.getTopic = async (req, res) => {
     // - Get
     let topicModel = null, photoModelArray = null;
     try {
-        topicModel = await Topic.findOne(query);
+        topicModel = await Topic.scope('includedCover').findOne(query);
         if (includedPhotos === '1') {
             photoModelArray = await topicModel.getPhotos(photoQuery);
         }

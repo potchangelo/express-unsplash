@@ -5,6 +5,11 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Topic extends Model {
     static associate(models) {
+      Topic.hasOne(models.TopicCoverUrl, {
+        as: 'coverUrl',
+        foreignKey: 'topicUid',
+        sourceKey: 'uid'
+      });
       Topic.belongsToMany(models.Photo, { 
         as: 'photos',
         through: models.PhotoTopic,
@@ -14,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'uid'
       });
 
+      Topic.includedCover = {
+        model: models.TopicCoverUrl, as: 'coverUrl',
+        attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'topicUid'] }
+      };
       Topic.lazyIncludedPhotos = {
         include: [
           {
@@ -38,6 +47,11 @@ module.exports = (sequelize, DataTypes) => {
         order: [['createdAt', 'DESC']],
         limit: 12
       };
+
+      Topic.addScope('includedCover', {
+        attributes: { exclude: ['id'] },
+        include: [Topic.includedCover]
+      });
     }
   };
 

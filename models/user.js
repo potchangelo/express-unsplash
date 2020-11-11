@@ -5,13 +5,13 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      User.hasMany(models.Photo, {
-        as: 'photos',
+      User.hasOne(models.UserAvatarUrl, {
+        as: 'avatarUrl',
         foreignKey: 'userUid',
         sourceKey: 'uid'
       });
-      User.hasOne(models.UserAvatarUrl, {
-        as: 'avatarUrl',
+      User.hasMany(models.Photo, {
+        as: 'photos',
         foreignKey: 'userUid',
         sourceKey: 'uid'
       });
