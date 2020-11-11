@@ -65,16 +65,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.TEXT
-    },
-    creditUser: {
-      type: DataTypes.STRING,
-    },
-    creditUserLink: {
-      type: DataTypes.TEXT
-    },
-    creditPhotoLink: {
-      type: DataTypes.TEXT
-    },
+    }
   }, {
     sequelize,
     modelName: 'Photo',
