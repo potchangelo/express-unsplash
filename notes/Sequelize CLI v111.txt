@@ -29,3 +29,11 @@ npx sequelize seed:generate --name demo-topic-cover-url
 
 npx sequelize db:migrate
 npx sequelize db:seed --seed 20201111073359-demo-topic-cover-url.js
+
+
+--- Phase 4 ---
+
+npx sequelize migration:generate --name create-photo-url-credit-columns
+npx sequelize migration:generate --name remove-photo-credit-columns
+
+npx sequelize db:migrate
