@@ -25,5 +25,7 @@ npx sequelize db:seed --seed 20201111054052-demo-photo-topic-4.js
 --- Phase 3 ---
 
 npx sequelize model:generate --name TopicCoverUrl --attributes topicUid:string
+npx sequelize seed:generate --name demo-topic-cover-url
 
 npx sequelize db:migrate
+npx sequelize db:seed --seed 20201111073359-demo-topic-cover-url.js
