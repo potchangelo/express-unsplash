@@ -2,6 +2,7 @@ const { Sequelize, User } = require('../models');
 
 const Op = Sequelize.Op;
 
+const ERROR_NOT_FOUND = 40004;
 const ERROR_GENERAL = 50000;
 
 exports.getUser = async (req, res) => {
@@ -23,12 +24,19 @@ exports.getUser = async (req, res) => {
     let userModel = null, photoModelArray = null;
     try {
         userModel = await User.scope('includedAvatar').findOne(query);
+        if (!userModel) throw new Error('Not found');
         if (includedPhotos === '1') {
             photoModelArray = await userModel.getPhotos(photoQuery);
         }
     }
     catch (error) {
         console.error(error);
+        if (error.message === 'Not found') {
+            return res.status(404).json({
+                errorCode: ERROR_NOT_FOUND,
+                errorMessage: 'User not found'
+            });
+        }
         return res.status(500).json({
             errorCode: ERROR_GENERAL,
             errorMessage: 'Error on get user'
