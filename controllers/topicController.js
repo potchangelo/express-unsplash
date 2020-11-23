@@ -2,6 +2,7 @@ const { Sequelize, Topic } = require('../models');
 
 const Op = Sequelize.Op;
 
+const ERROR_NOT_FOUND = 40004;
 const ERROR_GENERAL = 50000;
 
 exports.getTopics = async (req, res) => {
@@ -31,11 +32,13 @@ exports.getTopics = async (req, res) => {
 
 exports.getTopic = async (req, res) => {
     // - Data
-    const { uid } = req.params;
+    const { uidOrSlug } = req.params;
     const { includedPhotos, photosBeforeId } = req.query;
 
     // - Query
-    const query = { where: { uid } };
+    const query = {
+        where: { [Op.or]: { uid: uidOrSlug, slug: uidOrSlug } }
+    };
     let photoQuery = null;
     if (includedPhotos === '1') {
         photoQuery = { ...Topic.lazyIncludedPhotos };
@@ -48,12 +51,19 @@ exports.getTopic = async (req, res) => {
     let topicModel = null, photoModelArray = null;
     try {
         topicModel = await Topic.scope('includedCover').findOne(query);
+        if (!topicModel) throw new Error('Not found');
         if (includedPhotos === '1') {
             photoModelArray = await topicModel.getPhotos(photoQuery);
         }
     }
     catch (error) {
         console.error(error);
+        if (error.message === 'Not found') {
+            return res.status(404).json({
+                errorCode: ERROR_NOT_FOUND,
+                errorMessage: 'Topic not found'
+            });
+        }
         return res.status(500).json({
             errorCode: ERROR_GENERAL,
             errorMessage: 'Error on get topic'

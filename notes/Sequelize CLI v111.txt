@@ -37,3 +37,10 @@ npx sequelize migration:generate --name create-photo-url-credit-columns
 npx sequelize migration:generate --name remove-photo-credit-columns
 
 npx sequelize db:migrate
+
+
+--- Phase 5 ---
+
+npx sequelize migration:generate --name create-topic-slug-columns
+
+npx sequelize db:migrate

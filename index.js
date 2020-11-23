@@ -33,7 +33,7 @@ app.get('/users', userController.getRandomUsers);
 app.get('/users/:username', userController.getUser);
 
 app.get('/topics', topicController.getTopics);
-app.get('/topics/:uid', topicController.getTopic);
+app.get('/topics/:uidOrSlug', topicController.getTopic);
 
 app.listen(port, () => {
   console.log(`Express Unsplash-cloned API run on port ${port}!`);
