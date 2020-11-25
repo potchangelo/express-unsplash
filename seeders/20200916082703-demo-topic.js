@@ -5,6 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('Topics', [
       {
         uid: 'atvji0it74',
+        slug: 'athletics',
         title: 'Athletics',
         description: 'Ready, set, snap. Capturing action in the every day — from the tough gym workouts to the tense basketball games out on the court.',
         isFeatured: false,
@@ -13,6 +14,7 @@ module.exports = {
       },
       {
         uid: 'y15sew5687',
+        slug: 'food-drink',
         title: 'Food & Drink',
         description: 'It’s time to indulge, and throw yourself into the world of culinary photography — with shots of elaborate dinner parties, decadent pastries and more.',
         isFeatured: false,
@@ -21,6 +23,7 @@ module.exports = {
       },
       {
         uid: '615ol8futg',
+        slug: 'nature',
         title: 'Nature',
         description: 'Let’s celebrate the magic of Mother Earth — with images of everything our planet has to offer, from stunning seascapes, starry skies, and everything in between.',
         isFeatured: true,
@@ -29,6 +32,7 @@ module.exports = {
       },
       {
         uid: 'ezrtsi7uy8',
+        slug: 'travel',
         title: 'Travel',
         description: 'Discover hidden wonders and inspiring destinations around the world from the comfort of your own home.',
         isFeatured: true,
@@ -37,6 +41,7 @@ module.exports = {
       },
       {
         uid: 'zxi61i15ok',
+        slug: 'animals',
         title: 'Animals',
         description: 'Exotic wildlife, pet kittens — and everything in between. Uncover the beauty of the animal kingdom through your screen.',
         isFeatured: false,
@@ -45,6 +50,7 @@ module.exports = {
       },
       {
         uid: 'a8gm6yr56e',
+        slug: 'vehicle',
         title: 'Vehicle',
         description: 'Choose from a curated selection of vehicle photos. Always free on Unsplash.',
         isFeatured: false,
