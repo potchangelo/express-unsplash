@@ -20,6 +20,16 @@ module.exports = (sequelize, DataTypes) => {
         model: models.UserAvatarUrl, as: 'avatarUrl',
         attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'userUid'] }
       };
+      User.includedPhotos = {
+        model: models.Photo, as: 'photos',
+        attributes: { exclude: ['id', 'userUid'] },
+        include: [{
+          model: models.PhotoUrl, as: 'url',
+          attributes: { exclude: ['id', 'createdAt', 'updatedAt', 'photoUid'] }
+        }],
+        order: [['createdAt', 'DESC']],
+        limit: 3
+      };
       User.lazyIncludedPhotos = {
         include: [
           {
@@ -39,6 +49,10 @@ module.exports = (sequelize, DataTypes) => {
       User.addScope('includedAvatar', {
         attributes: { exclude: ['id'] },
         include: [User.includedAvatar]
+      });
+      User.addScope('includedPhotosOnSearch', {
+        attributes: { exclude: ['id'] },
+        include: [User.includedAvatar, User.includedPhotos]
       });
     }
   };
