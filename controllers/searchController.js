@@ -7,6 +7,11 @@ const ERROR_GENERAL = 50000;
 exports.searchPhotos = async (req, res) => {
     // - Data
     const { q, beforeId } = req.query;
+
+    // - Empty results
+    if (!q) {
+        return res.status(200).json({ photos: [] });
+    }
     
     // - Query
     const query = {
@@ -38,6 +43,11 @@ exports.searchPhotos = async (req, res) => {
 exports.searchUsers = async (req, res) => {
     // - Data
     const { q, beforeId } = req.query;
+
+    // - Empty results
+    if (!q) {
+        return res.status(200).json({ users: [] });
+    }
     
     // - Query
     const query = {
