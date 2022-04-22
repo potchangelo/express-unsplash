@@ -33,15 +33,16 @@
     "sequelize": "^6.19.0",
     "sequelize-cli": "^6.4.1"
   },
-  "scripts": {
-    "start": "node index.js",
-    "migrate": "sequelize db:migrate",
-    "seed": "sequelize db:seed:all",
-    "unseed": "sequelize db:seed:undo:all"
-  },
   "devDependencies": {
     "@types/node": "^17.0.25",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.2"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "migrate": "sequelize db:migrate",
+    "seed": "sequelize db:seed:all",
+    "unseed": "sequelize db:seed:undo:all"
   }
 }
