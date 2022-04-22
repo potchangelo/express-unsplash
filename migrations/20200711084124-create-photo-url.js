@@ -6,44 +6,44 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       photoUid: {
         allowNull: false,
         type: Sequelize.STRING,
         references: {
           model: 'Photos',
-          key: 'uid'
+          key: 'uid',
         },
         onUpdate: 'cascade',
-        onDelete: 'cascade'
+        onDelete: 'cascade',
       },
       urlThumbnail: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       urlSmall: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       urlMedium: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       urlLarge: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       urlOriginal: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('PhotoUrls');
-  }
+  },
 };

@@ -6,56 +6,56 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       uid: {
         allowNull: false,
         type: Sequelize.STRING,
-        unique: true
+        unique: true,
       },
       width: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       height: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       description: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       creditUser: {
         type: Sequelize.STRING,
       },
       creditUserLink: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       creditPhotoLink: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       userUid: {
         allowNull: false,
         type: Sequelize.STRING,
         references: {
           model: 'Users',
-          key: 'uid'
+          key: 'uid',
         },
         onUpdate: 'cascade',
-        onDelete: 'cascade'
-      }
+        onDelete: 'cascade',
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Photos');
-  }
+  },
 };
 
 // Relation

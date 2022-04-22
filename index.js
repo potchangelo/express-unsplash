@@ -11,18 +11,16 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 
 app.get('/', async (req, res) => {
-  let message = 'Connection OK', status = 200;
+  let message = 'Connection OK',
+    status = 200;
   try {
     await sequelize.authenticate();
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
     message = 'Connection Error';
     status = 502;
   }
-  res
-  .status(status)
-  .send(`Express Unsplash-cloned API by Zinglecode (for educational purposes only), ${message}.`);
+  res.status(status).send(`Express Unsplash-cloned API by Zinglecode (for educational purposes only), ${message}.`);
 });
 
 app.get('/photos', photoController.getPhotos);

@@ -8,8 +8,7 @@ module.exports = {
       await queryInterface.renameColumn('UserAvatarUrls', 'urlMedium', 'medium', { transaction });
       await queryInterface.renameColumn('UserAvatarUrls', 'urlLarge', 'large', { transaction });
       await transaction.commit();
-    }
-    catch (error) {
+    } catch (error) {
       await transaction.rollback();
       throw error;
     }
@@ -26,5 +25,5 @@ module.exports = {
       await transaction.rollback();
       throw error;
     }
-  }
+  },
 };

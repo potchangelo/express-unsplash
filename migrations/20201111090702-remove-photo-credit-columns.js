@@ -12,15 +12,15 @@ module.exports = {
     // Add columns
     await queryInterface.addColumn('Photos', 'creditUser', {
       type: Sequelize.TEXT,
-      after: 'description'
+      after: 'description',
     });
     await queryInterface.addColumn('Photos', 'creditUserLink', {
       type: Sequelize.TEXT,
-      after: 'creditUser'
+      after: 'creditUser',
     });
     await queryInterface.addColumn('Photos', 'creditPhotoLink', {
       type: Sequelize.TEXT,
-      after: 'creditUserLink'
+      after: 'creditUserLink',
     });
-  }
+  },
 };

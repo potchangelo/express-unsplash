@@ -1,13 +1,13 @@
 {
-    "development": {
-        "use_env_variable": "LOCALHOST_URL",
-        "logging": false
-    },
-    "test": {
-        "use_env_variable": "TEST_URL"
-    },
-    "production": {
-        "use_env_variable": "JAWSDB_URL",
-        "logging": false
-    }
+  "development": {
+    "use_env_variable": "LOCALHOST_URL",
+    "logging": false
+  },
+  "test": {
+    "use_env_variable": "TEST_URL"
+  },
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "logging": false
+  }
 }

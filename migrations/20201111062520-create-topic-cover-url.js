@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       topicUid: {
         allowNull: false,
@@ -14,40 +14,40 @@ module.exports = {
         unique: true,
         references: {
           model: 'Topics',
-          key: 'uid'
+          key: 'uid',
         },
         onUpdate: 'cascade',
-        onDelete: 'cascade'
+        onDelete: 'cascade',
       },
       small: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       medium: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       large: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       creditUser: {
         type: Sequelize.STRING,
       },
       creditUserLink: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       creditPhotoLink: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('TopicCoverUrls');
-  }
+  },
 };

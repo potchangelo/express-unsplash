@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       userUid: {
         allowNull: false,
@@ -14,40 +14,40 @@ module.exports = {
         unique: true,
         references: {
           model: 'Users',
-          key: 'uid'
+          key: 'uid',
         },
         onUpdate: 'cascade',
-        onDelete: 'cascade'
+        onDelete: 'cascade',
       },
       urlSmall: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       urlMedium: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       urlLarge: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       creditUser: {
         type: Sequelize.STRING,
       },
       creditUserLink: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       creditPhotoLink: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('UserAvatarUrls');
-  }
+  },
 };
