@@ -20,18 +20,18 @@
   },
   "license": "MIT",
   "main": "index.js",
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "babel-register": "^6.26.0",
     "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "mysql2": "^2.3.2",
-    "newrelic": "^8.5.0",
-    "sequelize": "^6.7.0",
-    "sequelize-cli": "^6.2.0"
-  },
-  "engines": {
-    "node": "12.x"
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mysql2": "^2.3.3",
+    "newrelic": "^8.10.0",
+    "sequelize": "^6.19.0",
+    "sequelize-cli": "^6.4.1"
   },
   "scripts": {
     "start": "node index.js",
