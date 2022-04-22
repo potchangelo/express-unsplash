@@ -6,7 +6,7 @@ const { sequelize } = require('./models');
 const { photoController, userController, topicController, searchController } = require('./controllers');
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = Number(process.env.PORT || process.env.APP_PORT);
 
 app.use(cors());
 
