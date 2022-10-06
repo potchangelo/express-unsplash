@@ -1,8 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-// const { sequelize } = require('./models');
-// const { photoController, userController, topicController, searchController } = require('./controllers');
+const { photoRouter } = require('./routers');
 
 const app = express();
 const port = Number(process.env.PORT || process.env.APP_PORT);
@@ -15,9 +14,7 @@ app.get('/', async (req, res) => {
   res.status(status).send(`Express Unsplash-cloned API by Zinglecode (for educational purposes only), ${statusMessage}.`);
 });
 
-// app.get('/photos', photoController.getPhotos);
-// app.get('/photos/random', photoController.getRandomPhoto);
-// app.get('/photos/:uid', photoController.getPhoto);
+app.use('/photos', photoRouter);
 
 // app.get('/users', userController.getRandomUsers);
 // app.get('/users/:username', userController.getUser);
