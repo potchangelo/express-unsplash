@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { photoRouter } = require('./routers');
+const { photoRouter, userRouter, topicsRouter, searchRouter } = require('./routers');
 
 const app = express();
 const port = Number(process.env.PORT || process.env.APP_PORT);
@@ -15,15 +15,9 @@ app.get('/', async (req, res) => {
 });
 
 app.use('/photos', photoRouter);
-
-// app.get('/users', userController.getRandomUsers);
-// app.get('/users/:username', userController.getUser);
-
-// app.get('/topics', topicController.getTopics);
-// app.get('/topics/:uidOrSlug', topicController.getTopic);
-
-// app.get('/search/photos', searchController.searchPhotos);
-// app.get('/search/users', searchController.searchUsers);
+app.use('/users', userRouter);
+app.use('/topics', topicsRouter);
+app.use('/search', searchRouter);
 
 app.listen(port, () => {
   console.log(`Express Unsplash-cloned API run on port ${port}!`);
