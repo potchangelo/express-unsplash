@@ -1,3 +1,4 @@
+const { Prisma } = require('@prisma/client');
 const express = require('express');
 const prisma = require('../prisma/client');
 
@@ -47,8 +48,6 @@ router.get('/', async (req, res) => {
       }
       return { ...user, avatar };
     });
-
-    console.log(users);
   } catch (error) {
     console.error(error);
     return res.status(500).json({
@@ -63,14 +62,13 @@ router.get('/:username', async (req, res) => {
   const username = req.params.username;
   let user = null;
   try {
-    user = await prisma.user.findUnique({
+    user = await prisma.user.findUniqueOrThrow({
       where: { username },
       include: { avatar: true },
     });
-    if (!user) throw new Error('not found')
   } catch (error) {
     console.error(error);
-    if (error.message === 'not found') {
+    if (error instanceof Prisma.NotFoundError) {
       return res.status(404).json({
         errorCode: 404,
         errorMessage: 'User not found',
