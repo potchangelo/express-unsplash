@@ -47,6 +47,7 @@ model Photo {
   user        User?     @relation(fields: [userUid], references: [uid])
   userUid     String?
   src         PhotoSrc?
+  topics      Topic[]
 }
 
 model PhotoSrc {
@@ -63,4 +64,29 @@ model PhotoSrc {
   updatedAt       DateTime @default(now()) @updatedAt
   photo           Photo?   @relation(fields: [photoUid], references: [uid])
   photoUid        String?  @unique
+}
+
+model Topic {
+  id          Int         @id @default(autoincrement())
+  uid         String      @unique @db.VarChar(20)
+  slug        String      @unique @db.VarChar(32)
+  title       String      @db.VarChar(32)
+  description String?     @db.Text
+  isFeatured  Boolean     @default(false)
+  cover       TopicCover?
+  photos      Photo[]
+}
+
+model TopicCover {
+  id              Int      @id @default(autoincrement())
+  small           String?  @db.Text
+  medium          String?  @db.Text
+  large           String?  @db.Text
+  creditUser      String?  @db.VarChar(50)
+  creditUserLink  String?  @db.Text
+  creditPhotoLink String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now()) @updatedAt
+  topic           Topic?   @relation(fields: [topicUid], references: [uid])
+  topicUid        String?  @unique
 }
