@@ -1,8 +1,9 @@
 const prisma = require('./client');
-const { seedUsers } = require('./seeds');
+const { seedUsers, seedPhotos } = require('./seeds');
 
 async function seed() {
   await seedUsers();
+  await seedPhotos();
 }
 
 seed()
