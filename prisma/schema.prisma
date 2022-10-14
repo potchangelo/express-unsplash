@@ -19,6 +19,7 @@ model User {
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @default(now()) @updatedAt
   avatar      UserAvatar?
+  photos      Photo[]
 }
 
 model UserAvatar {
@@ -33,4 +34,33 @@ model UserAvatar {
   updatedAt       DateTime @default(now()) @updatedAt
   user            User?    @relation(fields: [userUid], references: [uid])
   userUid         String?  @unique
+}
+
+model Photo {
+  id          Int       @id @default(autoincrement())
+  uid         String    @unique @db.VarChar(20)
+  width       Int
+  height      Int
+  description String?   @db.Text
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now()) @updatedAt
+  user        User?     @relation(fields: [userUid], references: [uid])
+  userUid     String?   @unique
+  src         PhotoSrc?
+}
+
+model PhotoSrc {
+  id              Int      @id @default(autoincrement())
+  thumbnail       String?  @db.Text
+  small           String?  @db.Text
+  medium          String?  @db.Text
+  large           String?  @db.Text
+  original        String?  @db.Text
+  creditUser      String?  @db.VarChar(50)
+  creditUserLink  String?  @db.Text
+  creditPhotoLink String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @default(now()) @updatedAt
+  photo           Photo?   @relation(fields: [photoUid], references: [uid])
+  photoUid        String?  @unique
 }
