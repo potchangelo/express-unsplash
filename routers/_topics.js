@@ -5,7 +5,20 @@ const prisma = require('../prisma/client');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  res.send({ topics: 'json' });
+  let topics = [];
+  try {
+    topics = await prisma.topic.findMany({
+      orderBy: [{ isFeatured: 'desc' }, { createdAt: 'desc' }],
+      include: { cover: true }
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      errorCode: 500,
+      errorMessage: 'Error on get topics',
+    });
+  }
+  res.status(200).json({ topics });
 });
 
 router.get('/:uidOrSlug', async (req, res) => {
