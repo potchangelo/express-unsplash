@@ -23,6 +23,17 @@ router.get('/', async (req, res) => {
 
 router.get('/:uidOrSlug', async (req, res) => {
   const { uidOrSlug } = req.params;
+  const { includedPhotos, photosBeforeId } = req.query;
+
+  let photosQuery = false;
+  if (includedPhotos === '1') {
+    photosQuery = {
+      include: { src: true, user: { include: { avatar: true } }, topics: true },
+      take: 12,
+      orderBy: { id: 'desc' }
+    };
+  }
+
   let topic = null;
   try {
     topic = await prisma.topic.findFirstOrThrow({
@@ -32,7 +43,7 @@ router.get('/:uidOrSlug', async (req, res) => {
           { slug: uidOrSlug }
         ]
       },
-      include: { cover: true }
+      include: { cover: true, photos: photosQuery }
     });
   } catch (error) {
     console.error(error);
@@ -47,6 +58,7 @@ router.get('/:uidOrSlug', async (req, res) => {
       errorMessage: 'Error on get user',
     });
   }
+
   res.status(200).json({ topic });
 });
 
