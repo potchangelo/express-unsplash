@@ -32,6 +32,9 @@ router.get('/:uidOrSlug', async (req, res) => {
       take: 12,
       orderBy: { id: 'desc' }
     };
+    if (!!photosBeforeId) {
+      photosQuery.where = { id: { lt: +photosBeforeId } };
+    }
   }
 
   let topic = null;
