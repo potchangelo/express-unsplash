@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
   try {
     photos = await prisma.photo.findMany({
       where,
-      include: { src: true, user: true, topics: true },
+      include: { src: true, user: { include: { avatar: true } }, topics: true },
       orderBy: { id: 'desc' },
       take: 12
     });
@@ -32,7 +32,7 @@ router.get('/random', async (req, res) => {
   let photo = null;
   try {
     const latestPhotos = await prisma.photo.findMany({
-      include: { src: true, user: true, topics: true },
+      include: { src: true, user: { include: { avatar: true } }, topics: true },
       orderBy: { id: 'desc' },
       take: 12
     });
@@ -53,7 +53,7 @@ router.get('/:uid', async (req, res) => {
   try {
     photo = await prisma.photo.findUniqueOrThrow({
       where: { uid },
-      include: { src: true, user: true, topics: true },
+      include: { src: true, user: { include: { avatar: true } }, topics: true },
     });
   } catch (error) {
     console.error(error);
