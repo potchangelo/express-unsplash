@@ -6,14 +6,18 @@ const jsonTopicsCovers = require('./data/topicsCovers.json');
 module.exports = async () => {
   const seededTopics = await Promise.all(
     jsonTopics.map((topic, index) => {
-      const { topicUid, ...topicCover} = jsonTopicsCovers[index];
+      const { photos, ...data } = topic;
+      const { topicUid, ...topicCover } = jsonTopicsCovers[index];
       return prisma.topic.upsert({
         create: {
-          ...topic,
-          cover: { create: topicCover }
+          ...data,
+          cover: { create: topicCover },
+          photos: {
+            connect: photos.map(puid => ({ uid: puid }))
+          }
         },
-        update: topic,
-        where: { uid: topic.uid }
+        update: data,
+        where: { uid: data.uid }
       });
     })
   );
