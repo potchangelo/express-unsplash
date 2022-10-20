@@ -5,9 +5,15 @@ const prisma = require('../prisma/client');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
+  const { beforeId } = req.query;
+  const where = {};
+  if (!!beforeId) {
+    where.id = { lt: +beforeId };
+  }
   let photos = [];
   try {
     photos = await prisma.photo.findMany({
+      where,
       include: { src: true, user: true, topics: true },
       orderBy: { id: 'desc' },
       take: 12

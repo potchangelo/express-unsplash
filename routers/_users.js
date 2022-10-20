@@ -24,12 +24,26 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:username', async (req, res) => {
-  const username = req.params.username;
+  const { username } = req.params;
+  const { includedPhotos, photosBeforeId } = req.query;
+
+  let photos = false;
+  if (includedPhotos === '1') {
+    photos = {
+      include: { src: true, topics: true },
+      take: 12,
+      orderBy: { id: 'desc' }
+    };
+    if (!!photosBeforeId) {
+      photos.where = { id: { lt: +photosBeforeId } };
+    }
+  }
+
   let user = null;
   try {
     user = await prisma.user.findUniqueOrThrow({
       where: { username },
-      include: { avatar: true },
+      include: { avatar: true, photos },
     });
   } catch (error) {
     console.error(error);
@@ -44,6 +58,7 @@ router.get('/:username', async (req, res) => {
       errorMessage: 'Error on get user',
     });
   }
+
   res.status(200).json({ user });
 });
 

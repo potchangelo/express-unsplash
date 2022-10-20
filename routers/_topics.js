@@ -25,15 +25,15 @@ router.get('/:uidOrSlug', async (req, res) => {
   const { uidOrSlug } = req.params;
   const { includedPhotos, photosBeforeId } = req.query;
 
-  let photosQuery = false;
+  let photos = false;
   if (includedPhotos === '1') {
-    photosQuery = {
+    photos = {
       include: { src: true, user: { include: { avatar: true } }, topics: true },
       take: 12,
       orderBy: { id: 'desc' }
     };
     if (!!photosBeforeId) {
-      photosQuery.where = { id: { lt: +photosBeforeId } };
+      photos.where = { id: { lt: +photosBeforeId } };
     }
   }
 
@@ -46,7 +46,7 @@ router.get('/:uidOrSlug', async (req, res) => {
           { slug: uidOrSlug }
         ]
       },
-      include: { cover: true, photos: photosQuery }
+      include: { cover: true, photos }
     });
   } catch (error) {
     console.error(error);
