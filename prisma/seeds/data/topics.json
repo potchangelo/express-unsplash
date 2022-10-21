@@ -5,7 +5,7 @@
     "title": "Athletics",
     "description": "Ready, set, snap. Capturing action in the every day — from the tough gym workouts to the tense basketball games out on the court.",
     "isFeatured": false,
-    "photos": []
+    "photos": ["T-sEIanjq_", "qRiDO_tVog", "qcPRKqVSQR"]
   },
   {
     "uid": "1d8hy-ftkf",
@@ -13,7 +13,7 @@
     "title": "Food & Drink",
     "description": "It’s time to indulge, and throw yourself into the world of culinary photography — with shots of elaborate dinner parties, decadent pastries and more.",
     "isFeatured": false,
-    "photos": ["VYGgASbAdW", "OlivB0GPEG"]
+    "photos": ["VYGgASbAdW", "OlivB0GPEG", "O2a5a6K-9g", "9JNwW_Cmf3", "mRIUGPTtA7"]
   },
   {
     "uid": "CXNf7cq1YT",
@@ -21,7 +21,7 @@
     "title": "Nature",
     "description": "Let’s celebrate the magic of Mother Earth — with images of everything our planet has to offer, from stunning seascapes, starry skies, and everything in between.",
     "isFeatured": true,
-    "photos": ["mReZ-CUUrZ"]
+    "photos": ["mReZ-CUUrZ", "Nm1Q6lu1hK", "59NRPmwoz3", "GbmDJ6n-p_", "Sm5poO1loh", "hOrFs_9sgT", "LvvURcIov1"]
   },
   {
     "uid": "NKuzE2q4vk",
@@ -29,7 +29,7 @@
     "title": "Travel",
     "description": "Discover hidden wonders and inspiring destinations around the world from the comfort of your own home.",
     "isFeatured": true,
-    "photos": ["So1ywxxZ_B", "1xtnJpQS3T", "45hfxg156w", "_Uaq6Rztcz", "l8P-EpON6W"]
+    "photos": ["So1ywxxZ_B", "1xtnJpQS3T", "45hfxg156w", "_Uaq6Rztcz", "l8P-EpON6W", "KNR5dJiMp1", "hOrFs_9sgT", "TLiwf1qI_e"]
   },
   {
     "uid": "akIA_E6HDf",
@@ -37,7 +37,7 @@
     "title": "Animals",
     "description": "Exotic wildlife, pet kittens — and everything in between. Uncover the beauty of the animal kingdom through your screen.",
     "isFeatured": false,
-    "photos": []
+    "photos": ["ltI-S27GSl"]
   },
   {
     "uid": "3H2MGYB5rf",
@@ -45,6 +45,6 @@
     "title": "Vehicle",
     "description": "Choose from a curated selection of vehicle photos. Always free on Unsplash.",
     "isFeatured": false,
-    "photos": []
+    "photos": ["xlXRU7knFl", "c7D67u5Fid", "UEiYIaJcMN", "XDVHAJxAp6", "doXVgWU7PJ"]
   }
 ]
