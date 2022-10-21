@@ -25,6 +25,6 @@ module.exports = async () => {
       })
     );
 
-    console.log(`Seed photos x ${seededPhotos.length}`);
+    console.log(`Seed photos set-${i} x ${seededPhotos.length}`);
   }
 };
