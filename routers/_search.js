@@ -33,7 +33,37 @@ router.get('/photos', async (req, res) => {
 });
 
 router.get('/users', async (req, res) => {
-  res.send({ users: 'search' });
+  const { q, beforeId } = req.query;
+  if (!q) {
+    return res.status(200).json({ users: "noine" });
+  }
+  const where = {
+    OR: [
+      { username: { contains: q, mode: 'insensitive' } },
+      { displayName: { contains: q, mode: 'insensitive' } }
+    ]
+  };
+  if (!!beforeId) {
+    where.id = { lt: +beforeId };
+  }
+
+  let users = [];
+  try {
+    users = await prisma.user.findMany({
+      where,
+      include: { avatar: true, photos: { include: { src: true } } },
+      orderBy: { id: 'desc' },
+      take: 12
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      errorCode: 500,
+      errorMessage: 'Error on search users',
+    });
+  }
+
+  res.send({ users });
 });
 
 module.exports = router;
