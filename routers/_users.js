@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     users = await prisma.user.findMany({
       include: { avatar: true },
       orderBy: { id: 'desc' },
-      take: 3
+      take: 3,
     });
     users.sort(() => Math.random() - 0.5);
   } catch (error) {
@@ -32,7 +32,7 @@ router.get('/:username', async (req, res) => {
     photos = {
       include: { src: true, topics: true },
       take: 12,
-      orderBy: { id: 'desc' }
+      orderBy: { id: 'desc' },
     };
     if (!!photosBeforeId) {
       photos.where = { id: { lt: +photosBeforeId } };

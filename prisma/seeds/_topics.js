@@ -13,11 +13,11 @@ module.exports = async () => {
           ...data,
           cover: { create: topicCover },
           photos: {
-            connect: photos.map(puid => ({ uid: puid }))
-          }
+            connect: photos.map(puid => ({ uid: puid })),
+          },
         },
         update: data,
-        where: { uid: data.uid }
+        where: { uid: data.uid },
       });
     })
   );

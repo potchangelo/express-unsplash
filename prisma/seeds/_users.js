@@ -10,7 +10,7 @@ module.exports = async () => {
       return await prisma.user.upsert({
         create: user,
         update: user,
-        where: { uid: user.uid }
+        where: { uid: user.uid },
       });
     })
   );
@@ -24,7 +24,7 @@ module.exports = async () => {
       return await prisma.userAvatar.upsert({
         create: { ...data, user: { connect: { username } } },
         update: { ...data },
-        where: { userUid: user.uid }
+        where: { userUid: user.uid },
       });
     })
   );

@@ -20,7 +20,9 @@ app.get('/', async (req, res) => {
     statusMessage = 'Connection Error';
     status = 500;
   }
-  res.status(status).send(`Express Unsplash-cloned API by Zinglecode (for educational purposes only), ${statusMessage}.`);
+  res
+    .status(status)
+    .send(`Express Unsplash-cloned API by Zinglecode (for educational purposes only), ${statusMessage}.`);
 });
 
 app.use('/photos', photosRouter);

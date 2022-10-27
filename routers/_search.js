@@ -19,7 +19,7 @@ router.get('/photos', async (req, res) => {
       where,
       include: { src: true, user: { include: { avatar: true } }, topics: true },
       orderBy: { id: 'desc' },
-      take: 12
+      take: 12,
     });
   } catch (error) {
     console.error(error);
@@ -35,13 +35,10 @@ router.get('/photos', async (req, res) => {
 router.get('/users', async (req, res) => {
   const { q, beforeId } = req.query;
   if (!q) {
-    return res.status(200).json({ users: "noine" });
+    return res.status(200).json({ users: [] });
   }
   const where = {
-    OR: [
-      { username: { contains: q, mode: 'insensitive' } },
-      { displayName: { contains: q, mode: 'insensitive' } }
-    ]
+    OR: [{ username: { contains: q, mode: 'insensitive' } }, { displayName: { contains: q, mode: 'insensitive' } }],
   };
   if (!!beforeId) {
     where.id = { lt: +beforeId };
@@ -53,7 +50,7 @@ router.get('/users', async (req, res) => {
       where,
       include: { avatar: true, photos: { include: { src: true } } },
       orderBy: { id: 'desc' },
-      take: 12
+      take: 12,
     });
   } catch (error) {
     console.error(error);

@@ -17,11 +17,11 @@ module.exports = async () => {
           create: {
             ...data,
             user: { connect: { uid: userUid } },
-            src: { create: { ...srcData } }
+            src: { create: { ...srcData } },
           },
           update: data,
-          where: { uid: photo.uid }
-        })
+          where: { uid: photo.uid },
+        });
       })
     );
 

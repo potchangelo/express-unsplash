@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
   try {
     topics = await prisma.topic.findMany({
       orderBy: [{ isFeatured: 'desc' }, { createdAt: 'desc' }],
-      include: { cover: true }
+      include: { cover: true },
     });
   } catch (error) {
     console.error(error);
@@ -30,7 +30,7 @@ router.get('/:uidOrSlug', async (req, res) => {
     photos = {
       include: { src: true, user: { include: { avatar: true } }, topics: true },
       take: 12,
-      orderBy: { id: 'desc' }
+      orderBy: { id: 'desc' },
     };
     if (!!photosBeforeId) {
       photos.where = { id: { lt: +photosBeforeId } };
@@ -41,12 +41,9 @@ router.get('/:uidOrSlug', async (req, res) => {
   try {
     topic = await prisma.topic.findFirstOrThrow({
       where: {
-        OR: [
-          { uid: uidOrSlug },
-          { slug: uidOrSlug }
-        ]
+        OR: [{ uid: uidOrSlug }, { slug: uidOrSlug }],
       },
-      include: { cover: true, photos }
+      include: { cover: true, photos },
     });
   } catch (error) {
     console.error(error);
