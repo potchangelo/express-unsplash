@@ -27,7 +27,7 @@
     "@prisma/client": "^4.5.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^5.0.0-beta.1",
+    "express": "^5.0.0-beta.3",
     "prisma": "^4.5.0"
   },
   "devDependencies": {
